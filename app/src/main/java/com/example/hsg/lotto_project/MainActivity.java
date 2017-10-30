@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity   {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("로또어플");
         setContentView(R.layout.activity_main);
 
         setupLotto();
@@ -47,8 +49,14 @@ public class MainActivity extends AppCompatActivity   {
 
         List<ActivityName> lottoList = new ArrayList<>();
 
-        lottoList.add(new ActivityName("랜덤생성",RandomActivity.class));
-        lottoList.add(new ActivityName("지정생성",AppointActivity.class));
+        lottoList.add(new ActivityName("  번호생성",null));
+        lottoList.add(new ActivityName("  랜덤생성",RandomActivity.class));
+        lottoList.add(new ActivityName("  지정생성",AppointActivity.class));
+        lottoList.add(new ActivityName("  생성번호보기",NlistActivity.class));
+        lottoList.add(new ActivityName("  당첨결과",null));
+        lottoList.add(new ActivityName("  판매점찾기",StoreActivity.class));
+        lottoList.add(new ActivityName("  역대당첨금",HistoryActivity.class));
+
 
         return  lottoList;
 

@@ -17,7 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".RandomActivity" />
-        <activity android:name=".AppointActivity"></activity>
+        <activity android:name=".AppointActivity" />
+        <activity android:name=".NlistActivity" />
+        <activity android:name=".StoreActivity" />
+        <activity android:name=".HistoryActivity"></activity>
     </application>
 
 </manifest>
