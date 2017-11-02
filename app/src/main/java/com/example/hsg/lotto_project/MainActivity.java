@@ -1,31 +1,104 @@
 package com.example.hsg.lotto_project;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hsg.lotto_project.com.example.lotto_project.ActivityName;
+import com.example.hsg.lotto_project.com.example.lotto_project.HttpHandler;
 import com.example.hsg.lotto_project.com.example.lotto_project.MyAdapter;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity   {
 
+    private String TAG = MainActivity.class.getSimpleName();
+
+    private static String url = "http://www.nlotto.co.kr/common.do?method=getLottoNumber";
+
+    ArrayList <HashMap<String,String>> contactList;
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private TextView Lotto_seq;
+
+    public String drwNo;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("로또어플");
         setContentView(R.layout.activity_main);
+        Lotto_seq = (TextView) findViewById(R.id.lotto_seq);
+        contactList = new ArrayList<>();
 
+        new GetContacts().execute();
+
+        Lotto_seq.setText(drwNo);
         setupLotto();
 
     }
+
+    public class GetContacts extends AsyncTask <Void, Void, Void>
+    {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            HttpHandler sh = new HttpHandler();
+
+            String jsonStr = sh.makeServiceCall(url);
+
+            Log.e(TAG, "Response from url: " + jsonStr);
+
+            if(jsonStr != null){
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonStr);
+
+                  drwNo = jsonObject.getJSONObject("drwNo").toString();
+
+                } catch (final JSONException e) {
+                    Log.e(TAG, "Json parsing error: " + e.getMessage());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),
+                                    "Json parsing error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                    });
+
+                }
+            }
+
+
+            return null;
+        }
+    }
+
+
 
     private void setupLotto(){
 
@@ -44,6 +117,8 @@ public class MainActivity extends AppCompatActivity   {
         mRecyclerView.setAdapter(mAdapter);
 
     }
+
+
 
     private List<ActivityName> getMenu(){
 
