@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity   {
     private RecyclerView.LayoutManager mLayoutManager;
     private TextView Lotto_seq;
 
-    public String drwNo;
+    public int drwNo;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity   {
 
         new GetContacts().execute();
 
-        Lotto_seq.setText(drwNo);
+        Lotto_seq.setText(Integer.toString(drwNo));
         setupLotto();
 
     }
@@ -76,8 +76,9 @@ public class MainActivity extends AppCompatActivity   {
                 try {
                     JSONObject jsonObject = new JSONObject(jsonStr);
 
-                  drwNo = jsonObject.getJSONObject("drwNo").toString();
+//                  drwNo = jsonObject.getJSONObject("drwNo").toString();
 
+                    drwNo = jsonObject.getInt("drwNo");
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
                     runOnUiThread(new Runnable() {
