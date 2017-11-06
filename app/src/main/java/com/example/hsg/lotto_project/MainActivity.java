@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity   {
         new GetContacts().execute();
 
         Lotto_seq.setText(Integer.toString(drwNo));
+
         setupLotto();
 
     }
