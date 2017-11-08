@@ -1,4 +1,4 @@
-package com.example.hsg.lotto_project.com.example.lotto_project;
+package com.example.hsg.lotto_project;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.example.hsg.lotto_project.R;
 
 import java.util.List;
 

@@ -1,30 +1,26 @@
 package com.example.hsg.lotto_project;
 
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.hsg.lotto_project.com.example.lotto_project.ActivityName;
-import com.example.hsg.lotto_project.com.example.lotto_project.HttpHandler;
-import com.example.hsg.lotto_project.com.example.lotto_project.MyAdapter;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.hsg.lotto_project.interfaces.LottoInfo;
+import com.example.hsg.lotto_project.retrofit.WinList;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity   {
 
@@ -39,66 +35,45 @@ public class MainActivity extends AppCompatActivity   {
     private RecyclerView.LayoutManager mLayoutManager;
     private TextView Lotto_seq;
 
-    public int drwNo;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("로또어플");
         setContentView(R.layout.activity_main);
+
         Lotto_seq = (TextView) findViewById(R.id.lotto_seq);
-        contactList = new ArrayList<>();
 
-        new GetContacts().execute();
-
-        Lotto_seq.setText(Integer.toString(drwNo));
-
+        run();
         setupLotto();
 
     }
 
-    public class GetContacts extends AsyncTask <Void, Void, Void>
-    {
+    public void run(){
+        LottoInfo apiService;
 
-        protected void onPreExecute() {
-            super.onPreExecute();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(LottoInfo.Base_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        apiService = retrofit.create(LottoInfo.class);
+        Call<WinList> WinData = apiService.getWinData(779);
 
-        }
+        WinData.enqueue(new Callback<WinList>() {
+            @Override
+            public void onResponse(Call<WinList> call, Response<WinList> response) {
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            HttpHandler sh = new HttpHandler();
+                response.body().toString();
 
-            String jsonStr = sh.makeServiceCall(url);
-
-            Log.e(TAG, "Response from url: " + jsonStr);
-
-            if(jsonStr != null){
-                try {
-                    JSONObject jsonObject = new JSONObject(jsonStr);
-
-//                  drwNo = jsonObject.getJSONObject("drwNo").toString();
-
-                    drwNo = jsonObject.getInt("drwNo");
-                } catch (final JSONException e) {
-                    Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG)
-                                    .show();
-                        }
-                    });
-
-                }
             }
 
+            @Override
+            public void onFailure(Call<WinList> call, Throwable t) {
 
-            return null;
-        }
+            }
+        });
+
+
+
+
     }
+
 
 
 

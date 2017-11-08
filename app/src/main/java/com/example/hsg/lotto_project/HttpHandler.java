@@ -1,4 +1,4 @@
-package com.example.hsg.lotto_project.com.example.lotto_project;
+package com.example.hsg.lotto_project;
 
 import android.util.Log;
 
