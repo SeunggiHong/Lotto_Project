@@ -1,16 +1,14 @@
 package com.example.hsg.lotto_project;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
-
 
 import com.example.hsg.lotto_project.interfaces.LottoInfo;
 import com.example.hsg.lotto_project.retrofit.WinList;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity   {
             @Override
             public void onResponse(Call<WinList> call, Response<WinList> response) {
 
-                response.body().toString();
+                Log.d("TAG", "response : "+ response.body().getDrwtNo1() + " / "+response.body().getDrwtNo2());
 
             }
 
