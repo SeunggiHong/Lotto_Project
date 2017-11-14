@@ -4,24 +4,117 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.hsg.lotto_project.MainActivity">
+    tools:context="com.example.hsg.lotto_project.MainActivity"
+    android:weightSum="1">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="40dp"
+            android:id="@+id/lotto_seq"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:id="@+id/lotto_seq"
-            android:text="당첨금" />
+            android:text="Lotto_seq"
+            android:textSize="24sp" />
 
         <TextView
+            android:id="@+id/lotto_winamt"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="0000000원" />
+            android:layout_height="wrap_content"
+            android:text="0000000원"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="0.36">
+
+        <TextView
+            android:id="@+id/lotto_num1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/lottoball"
+            android:text="TextView"
+            android:textColor="#ffffffff"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="29dp" />
+
+        <TextView
+            android:id="@+id/lotto_num2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/lottoball"
+            android:text="TextView"
+            android:textColor="#ffffffff"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="29dp" />
+
+        <TextView
+            android:id="@+id/lotto_num3"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/lottoball"
+            android:text="TextView"
+            android:textColor="#ffffffff"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="29dp" />
+
+        <TextView
+            android:id="@+id/lotto_num4"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/lottoball"
+            android:text="TextView"
+            android:textColor="#ffffffff"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="29dp" />
+
+        <TextView
+            android:id="@+id/lotto_num5"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/lottoball"
+            android:text="TextView"
+            android:textColor="#ffffffff"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="29dp" />
+
+        <TextView
+            android:id="@+id/lotto_num6"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/lottoball"
+            android:text="TextView"
+            android:textColor="#ffffffff"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="29dp" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="+"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/lotto_bonus"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/lottoball"
+            android:text="TextView"
+            android:textColor="#ffffffff"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="29dp" />
+
+
+
 
     </LinearLayout>
 
