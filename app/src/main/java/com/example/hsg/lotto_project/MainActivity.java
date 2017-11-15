@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity   {
             @Override
             public void onResponse(Call<WinList> call, Response<WinList> response) {
 
-<<<<<<< HEAD
                 try{
 
 
@@ -92,17 +91,10 @@ public class MainActivity extends AppCompatActivity   {
                     Lotto_bonus.setText(response.body().getBnusNo());
 
 
-                    Log.d("TAG", "response : "+ response.body().getDrwtNo1() + " / "+response.body().getDrwtNo2());
-
                 }catch (Exception e){
                     e.printStackTrace();
                 }
 
-
-
-=======
-                Log.d("TAG", "response : "+ response.body().getDrwtNo1() + " / "+response.body().getDrwtNo2());
->>>>>>> b456cd41118662977dc9a854edbbe330f12fc8b9
 
             }
 
