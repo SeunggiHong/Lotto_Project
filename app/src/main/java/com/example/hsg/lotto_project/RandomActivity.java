@@ -5,6 +5,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,12 +28,23 @@ public class RandomActivity extends AppCompatActivity {
     private LinearLayout layout_number;
     private TextView[] tv_numbers;
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("번호 랜덤생성");
         setContentView(R.layout.activity_random_num);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.random_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+//        mAdapter
 
 
 
@@ -115,13 +128,6 @@ public class RandomActivity extends AppCompatActivity {
 
         }
         result.close();
-
-//        while(c.moveToNext()) {
-//            int id = c.getInt(0);
-//            String name = c.getString(1);
-//            Log.d(tag,"id:"+id+",name:"+name);
-//        }
-
 
     }
 
